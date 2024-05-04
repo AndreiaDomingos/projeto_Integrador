@@ -3,7 +3,7 @@
 Repositório para PI referente ao 2° semestre de ADS, com participação de:
 
 Andreia Serafim
-Gabriel Passos
+Gabriel Cruz dos Passos
 Milena Arantes
 Núbia Ciscati
 
