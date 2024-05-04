@@ -7,4 +7,4 @@ Gabriel Passos
 Milena Arantes
 Núbia Ciscati
 
-sob a orinetação do professor Felipe do Espirito Santo.
+sob a orientação do professor Felipe do Espirito Santo.
