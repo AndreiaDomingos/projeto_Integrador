@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init 
 
 generator client {
   provider = "prisma-client-js"
@@ -14,8 +14,57 @@ datasource db {
 }
 
 model Produto {
-  id        Int    @id @default(autoincrement())
-  nome      String
-  preco     Float
-  descricao String
+  id_produto    Int                  @id @default(autoincrement())
+  nome          String
+  preco         Float
+  descricao     String
+  data_validade DateTime
+  fornecedores  Produto_Fornecedor[] // criando chave estrangeira
+}
+
+model Fornecedor {
+  id_fornecedor Int                  @id @default(autoincrement())
+  nome          String
+  cnpj          String
+  tempo_entrega String
+  produtos      Produto_Fornecedor[] // criando chave estrangeira
+}
+
+model Produto_Fornecedor {
+  id_prod_forn Int        @id @default(autoincrement())
+  fornecedor   Fornecedor @relation(fields: [fornecedorId], references: [id_fornecedor])
+  fornecedorId Int
+  produto      Produto    @relation(fields: [produtoId], references: [id_produto])
+  produtoId    Int
+  compras      Compras[]
+  Vendas       Vendas[]
+}
+
+model Vendas {
+  id_venda          Int                @id @default(autoincrement())
+  produto_vendido   Produto_Fornecedor @relation(fields: [produto_vendidoId], references: [id_prod_forn])
+  produto_vendidoId Int
+  quantidade        Float
+  valor_total       Float
+  data_venda        DateTime
+  clienteId         Int
+  cliente           Cliente            @relation(fields: [clienteId], references: [id_cliente])
+}
+
+model Cliente {
+  id_cliente         Int      @id @default(autoincrement())
+  nome               String
+  cpf_cnpj           String
+  telefone           String
+  compras_do_cliente Vendas[]
+}
+
+model Compras {
+  // entradas no estoque
+  id_compra          Int                @id @default(autoincrement())
+  produto_comprado   Produto_Fornecedor @relation(fields: [produto_compradoId], references: [id_prod_forn])
+  produto_compradoId Int
+  quantidade         Float
+  valor_total        Float
+  data_compra        DateTime
 }
