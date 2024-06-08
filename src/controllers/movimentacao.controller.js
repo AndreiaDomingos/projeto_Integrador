@@ -1,5 +1,5 @@
 import { validationResult } from 'express-validator';
-import Compras from '../models/compras.model.js';
+import Movimentacao from '../models/movimentacao.model.js';
 
 function validaCampos(){
   const errors = validationResult(req) 
@@ -8,19 +8,19 @@ function validaCampos(){
     }
 }
 
-export default class ComprasController{
+export default class MovimentacaoController{
   static async index(req, res){
-    const compras = await Compras.findMany()
-    res.json(compras)
+    const movimentacoes = await Movimentacao.findMany()
+    res.json(movimentacoes)
   }
 
   static async create(req, res){
     validaCampos();
 
-    const compras = await Compras.create({
+    const movimentacoes = await Movimentacao.create({
       data: req.body
     })
-    res.json(compras)
+    res.json(movimentacoes)
   }
 
   static async show(req, res){ 
@@ -29,36 +29,36 @@ export default class ComprasController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const compras = await Compras.findUnique({
+    const movimentacoes = await Movimentacao.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!compras){
-      return res.status(404).json({ message: 'Compra não encontrada'})
+    if(!movimentacoes){
+      return res.status(404).json({ message: 'Movimentação não encontrada'})
     }
-    res.json(compras)
+    res.json(movimentacoes)
   }
 
   static async update(req, res){
     validaCampos();
 
-    const compras = await Compras.findUnique({
+    const movimentacoes = await Movimentacao.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!compras){
-      return res.status(404).json({ message: 'Compra não encontrada' })
+    if(!movimentacoes){
+      return res.status(404).json({ message: 'Movimentação não encontrada' })
     }
 
-    const updatedCompras = await Compras.update({
+    const updatedMovimentacao = await Movimentacao.update({
       where: {
         id: parseInt(req.params.id)
       },
       data: req.body
     })
-    res.json(updatedCompras)
+    res.json(updatedMovimentacao)
   }
 
   static async delete(req, res){
@@ -67,20 +67,20 @@ export default class ComprasController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const compras = await Compras.findUnique({
+    const movimentacoes = await Movimentacao.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!compras){
-      return res.status(404).json({ message: 'Compra não encontrada' })
+    if(!movimentacoes){
+      return res.status(404).json({ message: 'Movimentação não encontrada' })
     }
 
-    await Compras.delete({
+    await Movimentacao.delete({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    res.json({ message: 'Compra removida com sucesso' })
+    res.json({ message: 'Movimentação removida com sucesso' })
   }
 }
