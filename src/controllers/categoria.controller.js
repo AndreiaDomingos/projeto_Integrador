@@ -1,5 +1,5 @@
 import { validationResult } from 'express-validator';
-import Cliente from '../models/cliente.model.js';
+import Categoria from '../models/categoria.model.js';
 
 // function validaCampos(){
 //   const errors = validationResult(req) 
@@ -8,10 +8,10 @@ import Cliente from '../models/cliente.model.js';
 //     }
 // }
 
-export default class ClienteController{
+export default class CategoriaController{
   static async index(req, res){
-    const clientes = await Cliente.findMany()
-    res.json(clientes)
+    const categorias = await Categoria.findMany()
+    res.json(categorias)
   }
 
   static async create(req, res){
@@ -21,10 +21,10 @@ export default class ClienteController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const clientes = await Cliente.create({
+    const categorias = await Categoria.create({
       data: req.body
     })
-    res.json(clientes)
+    res.json(categorias)
   }
 
   static async show(req, res){ 
@@ -33,15 +33,15 @@ export default class ClienteController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const cliente = await Cliente.findUnique({
+    const categorias = await Categoria.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!cliente){
-      return res.status(404).json({ message: 'Cliente não encontrado' })
+    if(!categorias){
+      return res.status(404).json({ message: 'Categoria não encontrada' })
     }
-    res.json(cliente)
+    res.json(categorias)
   }
 
   static async update(req, res){
@@ -51,22 +51,22 @@ export default class ClienteController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const cliente = await Cliente.findUnique({
+    const categorias = await Categoria.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!cliente){
-      return res.status(404).json({ message: 'Cliente não encontrado' })
+    if(!categorias){
+      return res.status(404).json({ message: 'Categoria não encontrada' })
     }
 
-    const updatedCliente = await Cliente.update({
+    const updatedCategoria = await Categoria.update({
       where: {
         id: parseInt(req.params.id)
       },
       data: req.body
     })
-    res.json(updatedCliente)
+    res.json(updatedCategoria)
   }
 
   static async delete(req, res){
@@ -75,20 +75,20 @@ export default class ClienteController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const cliente = await Cliente.findUnique({
+    const categorias = await Categoria.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!cliente){
-      return res.status(404).json({ message: 'Cliente não encontrado' })
+    if(!categorias){
+      return res.status(404).json({ message: 'Categoria não encontrada' })
     }
 
-    await Cliente.delete({
+    await Categoria.delete({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    res.json({ message: 'Cliente removido com sucesso' })
+    res.json({ message: 'Categoria removida com sucesso' })
   }
 }1
