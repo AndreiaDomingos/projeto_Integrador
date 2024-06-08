@@ -1,6 +1,6 @@
 import{ Router } from 'express'
-import VendasController from '../controllers/vendas.controller.js'
-import { vendasValidator, vendasUpdateValidator, vendasIdValidator } from '../validator/vendas.validator.js'
+import VendasController from '../controllers/movimentacao.controller.js'
+import { movimentacaoValidator, movimentacaoUpdateValidator, vendasIdValidator } from '../validator/movimentacao.validator.js'
 
 const router = Router();
 
