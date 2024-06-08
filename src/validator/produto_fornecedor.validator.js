@@ -1,4 +1,4 @@
-import { body, param } from 'express-validator';
+import { body, param } from 'express-validator'; //Feito
 
 export const produto_fornecedor = [
   body('produtoId').isInt().withMessage('produtoId deve ser um inteiro'),
