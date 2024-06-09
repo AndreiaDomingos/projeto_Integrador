@@ -91,4 +91,4 @@ export default class CategoriaController{
     })
     res.json({ message: 'Categoria removida com sucesso' })
   }
-}1
+}

@@ -1,12 +1,12 @@
 import { validationResult } from 'express-validator';
 import Movimentacao from '../models/movimentacao.model.js';
 
-function validaCampos(){
-  const errors = validationResult(req) 
-    if(!errors.isEmpty()){
-      return res.status(400).json({ errors: errors.array() })
-    }
-}
+//function validaCampos(){
+  //const errors = validationResult(req) 
+    //if(!errors.isEmpty()){
+      //return res.status(400).json({ errors: errors.array() })
+    //}
+//}
 
 export default class MovimentacaoController{
   static async index(req, res){
@@ -15,7 +15,11 @@ export default class MovimentacaoController{
   }
 
   static async create(req, res){
-    validaCampos();
+    //validaCampos();
+    const errors = validationResult(req) 
+      if(!errors.isEmpty()){              
+        return res.status(400).json({ errors: errors.array() })
+    }
 
     const movimentacoes = await Movimentacao.create({
       data: req.body
@@ -41,8 +45,12 @@ export default class MovimentacaoController{
   }
 
   static async update(req, res){
-    validaCampos();
-
+    //validaCampos();
+    const errors = validationResult(req) 
+    if(!errors.isEmpty()){              
+      return res.status(400).json({ errors: errors.array() })
+    }
+    
     const movimentacoes = await Movimentacao.findUnique({
       where: {
         id: parseInt(req.params.id)

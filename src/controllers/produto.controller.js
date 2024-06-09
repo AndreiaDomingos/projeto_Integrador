@@ -1,12 +1,12 @@
 import { validationResult } from 'express-validator';
 import Produto from '../models/produto.model.js';
 
-function validaCampos(){
-  const errors = validationResult(req) 
-    if(!errors.isEmpty()){
-      return res.status(400).json({ errors: errors.array() })
-    }
-}
+//function validaCampos(){
+  //const errors = validationResult(req) 
+    //if(!errors.isEmpty()){
+      //return res.status(400).json({ errors: errors.array() })
+    //}
+//}
 
 export default class ProdutoController{
   static async index(req, res){
@@ -15,8 +15,11 @@ export default class ProdutoController{
   }
 
   static async create(req, res){
-    validaCampos();
-
+    //validaCampos();
+    const errors = validationResult(req) 
+      if(!errors.isEmpty()){              
+        return res.status(400).json({ errors: errors.array() })
+    }
     const produto = await Produto.create({
       data: req.body
     })
@@ -41,8 +44,11 @@ export default class ProdutoController{
   }
 
   static async update(req, res){
-    validaCampos();
-
+    //validaCampos();
+    const errors = validationResult(req) 
+      if(!errors.isEmpty()){              
+        return res.status(400).json({ errors: errors.array() })
+    }
     const produto = await Produto.findUnique({
       where: {
         id: parseInt(req.params.id)

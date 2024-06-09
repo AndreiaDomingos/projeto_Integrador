@@ -2,10 +2,10 @@ import { validationResult } from 'express-validator';
 import Fornecedor from '../models/fornecedor.model.js';
 
 //function validaCampos(){
-  //const errors = validationResult(req) 
-   // if(!errors.isEmpty()){
-     // return res.status(400).json({ errors: errors.array() })
-   // }
+//const errors = validationResult(req) 
+  // if(!errors.isEmpty()){
+    //return res.status(400).json({ errors: errors.array() })
+//}
 //}
 
 export default class FornecedorController{
@@ -16,6 +16,10 @@ export default class FornecedorController{
 
   static async create(req, res){
     //validaCampos();
+    const errors = validationResult(req) 
+      if(!errors.isEmpty()){
+        return res.status(400).json({ errors: errors.array() })
+}
 
     const fornecedor = await Fornecedor.create({
       data: req.body
@@ -42,7 +46,10 @@ export default class FornecedorController{
 
   static async update(req, res){
     //validaCampos();
-
+    const errors = validationResult(req) 
+      if(!errors.isEmpty()){              
+        return res.status(400).json({ errors: errors.array() })
+    }
     const fornecedor = await Fornecedor.findUnique({
       where: {
         id: parseInt(req.params.id)
