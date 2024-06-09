@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator';
 import Categoria from '../models/categoria.model.js';
 
-// function validaCampos(){
+//function validaCampos(){
 //   const errors = validationResult(req) 
 //     if(!errors.isEmpty()){
 //       return res.status(400).json({ errors: errors.array() })
