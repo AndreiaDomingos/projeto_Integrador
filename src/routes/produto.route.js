@@ -1,4 +1,4 @@
-import{ Router } from 'express'
+import{ Router } from 'express' //FEITO
 import ProdutoController from '../controllers/produto.controller.js'
 import { produtoValidator, produtoUpdateValidator, produtoIdValidator } from '../validator/produto.validator.js'
 

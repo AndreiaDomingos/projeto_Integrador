@@ -1,4 +1,4 @@
-import{ Router } from 'express'
+import{ Router } from 'express' //FEITO
 import FornecedorController from '../controllers/fornecedor.controller.js'
 import { fornecedorValidator, fornecedorUpdateValidator, fornecedorIdValidator } from '../validator/fornecedor.validator.js'
 
