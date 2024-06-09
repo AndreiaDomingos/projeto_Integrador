@@ -20,7 +20,9 @@ model Produto {
   preco         Float
   descricao     String
   estoque       Float
-  categoria    Categoria[]
+  categoria     Categoria    @relation(fields: [categoriaId], references: [id])
+  categoriaId   Int
+  //categoria    Categoria[]
   fornecedor Produto_Fornecedor[]
   movimentacao Movimentacao[]
 }
@@ -42,11 +44,12 @@ model Produto_Fornecedor {
 }
 
 model Categoria {
-  id          Int                @id @default(autoincrement())
-  nome String
-  descricao String
-  produto      Produto    @relation(fields: [produtoId], references: [id])
-  produtoId    Int
+  id         Int                @id @default(autoincrement())
+  nome       String
+  descricao  String
+  produto    Produto[]
+  //produto      Produto    @relation(fields: [produtoId], references: [id])
+  //produtoId    Int
 }
 
 model Movimentacao {
