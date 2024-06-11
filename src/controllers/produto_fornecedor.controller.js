@@ -1,5 +1,5 @@
 import { validationResult } from 'express-validator';
-import Produto_Fornecedor from '../models/produto_fornecedor.model.js';
+import Produto_Fornecedor from '../models/produto_Fornecedor.model.js';
 
 
 export default class produtoFornecedorController{
