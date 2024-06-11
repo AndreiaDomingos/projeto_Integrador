@@ -1,12 +1,6 @@
 import { validationResult } from 'express-validator';
 import Categoria from '../models/categoria.model.js';
 
-//function validaCampos(){
-//   const errors = validationResult(req) 
-//     if(!errors.isEmpty()){
-//       return res.status(400).json({ errors: errors.array() })
-//     }
-// }
 
 export default class CategoriaController{
   static async index(req, res){
@@ -15,7 +9,7 @@ export default class CategoriaController{
   }
 
   static async create(req, res){
-    // validaCampos();
+    
     const errors = validationResult(req) 
     if(!errors.isEmpty()){
       return res.status(400).json({ errors: errors.array() })
@@ -45,7 +39,7 @@ export default class CategoriaController{
   }
 
   static async update(req, res){
-    //validaCampos();
+    
     const errors = validationResult(req) 
     if(!errors.isEmpty()){
       return res.status(400).json({ errors: errors.array() })

@@ -1,25 +1,23 @@
 import { validationResult } from 'express-validator';
-import Movimentacao from '../models/movimentacao.model.js';
+import Produto_Fornecedor from '../models/produto_fornecedor.model.js';
 
 
-
-export default class MovimentacaoController{
+export default class produtoFornecedorController{
   static async index(req, res){
-    const movimentacoes = await Movimentacao.findMany()
-    res.json(movimentacoes)
+    const produtoFornecedor = await Produto_Fornecedor.findMany()
+    res.json(produtoFornecedor)
   }
 
   static async create(req, res){
-   
     const errors = validationResult(req) 
       if(!errors.isEmpty()){              
         return res.status(400).json({ errors: errors.array() })
     }
 
-    const movimentacoes = await Movimentacao.create({
+    const produtoFornecedor = await Produto_Fornecedor.create({
       data: req.body
     })
-    res.json(movimentacoes)
+    res.json(produtoFornecedor)
   }
 
   static async show(req, res){ 
@@ -28,40 +26,39 @@ export default class MovimentacaoController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const movimentacoes = await Movimentacao.findUnique({
+    const produtoFornecedor = await Produto_Fornecedor.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!movimentacoes){
-      return res.status(404).json({ message: 'Movimentação não encontrada'})
+    if(!produtoFornecedor){
+      return res.status(404).json({ message: 'Relação de produto x fornecedor não encontrada'})
     }
-    res.json(movimentacoes)
+    res.json(produtoFornecedor)
   }
 
   static async update(req, res){
-    
     const errors = validationResult(req) 
     if(!errors.isEmpty()){              
       return res.status(400).json({ errors: errors.array() })
     }
     
-    const movimentacoes = await Movimentacao.findUnique({
+    const produtoFornecedor = await Produto_Fornecedor.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!movimentacoes){
-      return res.status(404).json({ message: 'Movimentação não encontrada' })
+    if(!produtoForncedor){
+      return res.status(404).json({ message: 'Relação de produto x fornecedor não encontrada' })
     }
 
-    const updatedMovimentacao = await Movimentacao.update({
+    const updatedProdutoFornecedor = await Produto_Fornecedor.update({
       where: {
         id: parseInt(req.params.id)
       },
       data: req.body
     })
-    res.json(updatedMovimentacao)
+    res.json(updatedProdutoFornecedor)
   }
 
   static async delete(req, res){
@@ -70,20 +67,20 @@ export default class MovimentacaoController{
       return res.status(400).json({ errors: errors.array() })
     }
 
-    const movimentacoes = await Movimentacao.findUnique({
+    const produtoFornecedor = await Produto_Fornecedor.findUnique({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    if(!movimentacoes){
-      return res.status(404).json({ message: 'Movimentação não encontrada' })
+    if(!produtoFornecedor){
+      return res.status(404).json({ message: 'Relação de produto x fornecedor não encontrada' })
     }
 
-    await Movimentacao.delete({
+    await ProdutoFornecedor.delete({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    res.json({ message: 'Movimentação removida com sucesso' })
+    res.json({ message: 'Relação de produto x fornecedor com sucesso' })
   }
 }
