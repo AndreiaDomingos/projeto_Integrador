@@ -3,7 +3,7 @@ import { body, param } from 'express-validator'; //Feito
 export const produtoValidator = [
   body('foto').isString().withMessage('Foto deve ser uma string representando o URL da imagem'),
   body('nome').isString().withMessage('Nome deve ser uma string'),
-  body('preco').isFloat().withMessage('Preço deve ser um número positivo'), //{ min: 0 } dentro do isFloat para validar se é positivo
+  body('preco').isFloat({ min: 0 }).withMessage('Preço deve ser um número positivo'), //{ min: 0 } dentro do isFloat para validar se é positivo
   body('descricao').isString().withMessage('Descricao é obrigatória'),
   body('estoque').isFloat().withMessage('Estoque deve ser um número positivo') //mesmo caso do preço, para ser maior ou igual a zero
 ]
