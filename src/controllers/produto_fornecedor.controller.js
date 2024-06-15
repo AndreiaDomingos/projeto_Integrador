@@ -9,6 +9,7 @@ export default class produtoFornecedorController{
   }
 
   static async create(req, res){
+    
     const errors = validationResult(req) 
       if(!errors.isEmpty()){              
         return res.status(400).json({ errors: errors.array() })
@@ -38,6 +39,7 @@ export default class produtoFornecedorController{
   }
 
   static async update(req, res){
+    
     const errors = validationResult(req) 
     if(!errors.isEmpty()){              
       return res.status(400).json({ errors: errors.array() })
@@ -48,7 +50,7 @@ export default class produtoFornecedorController{
         id: parseInt(req.params.id)
       }
     })
-    if(!produtoForncedor){
+    if(!produtoFornecedor){
       return res.status(404).json({ message: 'Relação de produto x fornecedor não encontrada' })
     }
 
@@ -76,11 +78,11 @@ export default class produtoFornecedorController{
       return res.status(404).json({ message: 'Relação de produto x fornecedor não encontrada' })
     }
 
-    await ProdutoFornecedor.delete({
+    await Produto_Fornecedor.delete({
       where: {
         id: parseInt(req.params.id)
       }
     })
-    res.json({ message: 'Relação de produto x fornecedor com sucesso' })
+    res.json({ message: 'Relação de produto x fornecedor excluída com sucesso' })
   }
 }
